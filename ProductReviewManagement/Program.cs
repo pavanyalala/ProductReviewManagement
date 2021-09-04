@@ -39,7 +39,8 @@ namespace ProductReviewManagement
             };
             Management management = new Management();
             //management.TopRecords(list);
-            management.SelectRecords(list);
+            //management.SelectRecords(list);
+            management.RetriveCountOfRecords(list);
         }
     }
 }
