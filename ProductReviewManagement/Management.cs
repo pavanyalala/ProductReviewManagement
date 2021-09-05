@@ -73,6 +73,16 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID:-" + list.ProductID + " " + "Review:-" + list.Review);
             }
         }
+        public void SkipRecords(List<ProductReview> review)
+        {
+            var recordedData = (from productreviews in review
+                                select productreviews).Skip(5);
+
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine("Product Id: " + list.ProductID + "  " + "User Id: " + list.UserID + "  " + "Product Rating: " + list.Rating + "  " +  "Is Like: " + list.IsLike);
+            }
+        }
     }
 }
     
