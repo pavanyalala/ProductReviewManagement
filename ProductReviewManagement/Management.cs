@@ -62,7 +62,7 @@ namespace ProductReviewManagement
             }
         }
         /// <summary>
-        /// UC-5
+        /// UC-5 and UC-7
         /// </summary>
         public void RetriveProductIDandReview(List<ProductReview> review)
         {
