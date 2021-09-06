@@ -50,7 +50,7 @@ namespace ProductReviewManagement
 
         }
         /// <summary>
-        /// UC-5
+        /// UC-4
         /// </summary>
         /// <param name="review"></param>
         public void RetriveCountOfRecords(List<ProductReview> review)
@@ -73,6 +73,10 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID:-" + list.ProductID + " " + "Review:-" + list.Review);
             }
         }
+        /// <summary>
+        /// UC-6
+        /// </summary>
+        /// <param name="review"></param>
         public void SkipRecords(List<ProductReview> review)
         {
             var recordedData = (from productreviews in review
@@ -80,7 +84,32 @@ namespace ProductReviewManagement
 
             foreach (var list in recordedData)
             {
-                Console.WriteLine("Product Id: " + list.ProductID + "  " + "User Id: " + list.UserID + "  " + "Product Rating: " + list.Rating + "  " +  "Is Like: " + list.IsLike);
+                Console.WriteLine("Product Id: " + list.ProductID + "  " + "User Id: " + list.UserID + "  " + "Product Rating: " + list.Rating + "  " + "Is Like: " + list.IsLike);
+            }
+        }
+        /// <summary>
+        /// UC-8
+        /// </summary>
+        /// <param name="review"></param>
+        public void ProductReviewDataTable(List<ProductReview> review)
+        {
+            var recordedData = from productReviews in review select productReviews;
+
+            dataTable.Columns.Add("ProductID").DataType = typeof(int);
+            dataTable.Columns.Add("UserID").DataType = typeof(int);
+            dataTable.Columns.Add("Rating").DataType = typeof(double);
+            dataTable.Columns.Add("Review").DataType = typeof(string);
+            dataTable.Columns.Add("IsLike").DataType = typeof(bool);
+
+            foreach (var list in recordedData)
+            {
+                dataTable.Rows.Add(list.ProductID, list.UserID, list.Rating, list.Review, list.IsLike);
+            }
+
+            var productTable = from item in dataTable.AsEnumerable() select item;
+            foreach (DataRow row in productTable)
+            {
+                Console.WriteLine(row.Field<int>("ProductID") + " " + row.Field<int>("UserID") + " " + row.Field<double>("Rating") + " " + row.Field<string>("Review") + " " + row.Field<bool>("IsLike"));
             }
         }
     }
